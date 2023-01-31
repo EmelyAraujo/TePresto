@@ -2,8 +2,6 @@ package edu.ucne.tepresto.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.type.DateTime
-import java.util.Date
 
 @Entity(tableName = "Personas")
 data class PersonaEntity(
@@ -14,6 +12,6 @@ data class PersonaEntity(
     val celular: String,
     val email: String,
     val direccion: String,
-    val fechaNacimieto: DateTime,
+    val fechaNacimiento: String,
     val ocupacionId: Int?=null
 )
