@@ -12,21 +12,27 @@ interface OcupacionDao {
     @Delete
     suspend fun delete(ocupacionEntity: OcupacionEntity)
 
-    @Query("""
+    @Query(
+        """
         SELECT * 
         FROM Ocupaciones
         WHERE OcupacionId=:ocupacionId
         LIMIT 1
-    """)
+    """
+    )
     suspend fun find(ocupacionId: Int): OcupacionEntity?
 
-    @Query("SELECT * FROM Ocupaciones")
+    @Query(
+        """SELECT * FROM Ocupaciones
+            ORDER BY ocupacionId desc
+        """
+    )
     fun getList(): Flow<List<OcupacionEntity>>
 
 }
 
-class dao{
-    fun save():Boolean{
+class dao {
+    fun save(): Boolean {
         return true
     }
 }
