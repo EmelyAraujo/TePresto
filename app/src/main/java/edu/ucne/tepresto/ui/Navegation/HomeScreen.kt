@@ -12,12 +12,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import edu.ucne.tepresto.ui.ocupacion.OcupacionScreen
+import edu.ucne.tepresto.ui.persona.PersonaScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    var showMenu by remember { mutableStateOf(false) }
-    val context = LocalContext.current
+
     var expanded by remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize()) {
@@ -77,9 +81,20 @@ fun HomeScreen(navController: NavHostController) {
     }
 }
 
-
 @Composable
-fun MenuScreen() {
+fun NavigationGraph() {
+    val navController: NavHostController = rememberNavController()
+    NavHost(navController = navController, startDestination = Rutas.Home.ruta  ){
+        composable(route = Rutas.Home.ruta){
+            HomeScreen(navController)
+        }
+        composable(route = Rutas.OcupacionR.ruta){
 
+            OcupacionScreen()
+        }
 
+        composable(route = Rutas.PersonaR.ruta){
+            PersonaScreen()
+        }
+    }
 }
