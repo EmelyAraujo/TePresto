@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -18,7 +20,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun PersonaScreen(viewModel: PersonaViewModel = hiltViewModel()) {
 
     Column(modifier = Modifier.fillMaxSize()) {
-
+        IconButton(
+            modifier = Modifier
+                .padding(8.dp),
+            onClick = { }
+        ){
+            Icon(Icons.Outlined.ArrowBack, contentDescription = "Back")
+        }
         OutlinedTextField(
             modifier = Modifier
                 .padding(8.dp)

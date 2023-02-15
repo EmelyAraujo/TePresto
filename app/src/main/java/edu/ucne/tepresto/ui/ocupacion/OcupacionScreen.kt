@@ -4,10 +4,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.People
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -15,11 +16,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import edu.ucne.tepresto.data.local.entity.OcupacionEntity
+import edu.ucne.tepresto.ui.Navegation.Rutas
+import edu.ucne.tepresto.ui.persona.PersonaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OcupacionScreen(viewModel: OcupacionViewModel = hiltViewModel()) {
+fun OcupacionScreen(viewModel: OcupacionViewModel = hiltViewModel() ) {
 
     Column(Modifier.fillMaxSize()) {
         OcupacionBody(viewModel)
@@ -35,13 +39,23 @@ private fun OcupacionBody(
     viewModel: OcupacionViewModel
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        IconButton(
-            modifier = Modifier
-                .padding(8.dp),
-            onClick = { viewModel.insertar() }
-        ){
-            Icon(Icons.Outlined.ArrowBack, contentDescription = "Back")
-        }
+        TopAppBar(
+            title = { Text("Registro de ocupaciones") },
+            navigationIcon = {
+                IconButton(onClick = { }) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                }
+            },
+
+            actions = {
+                // RowScope here, so these icons will be placed horizontally
+                IconButton(onClick = { /* doSomething() */ }) {
+                    Icon(Icons.Filled.Share, contentDescription = "Buscar")
+                }
+
+            }
+        )
+
         OutlinedTextField(
             modifier = Modifier
                 .padding(8.dp)
