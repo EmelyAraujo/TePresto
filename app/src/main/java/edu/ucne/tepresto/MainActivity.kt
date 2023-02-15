@@ -10,8 +10,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import edu.ucne.tepresto.ui.Navegation.HomeScreen
+import edu.ucne.tepresto.ui.Navegation.Rutas
 import edu.ucne.tepresto.ui.ocupacion.OcupacionScreen
 import edu.ucne.tepresto.ui.persona.PersonaScreen
 import edu.ucne.tepresto.ui.theme.TePrestoTheme
@@ -27,10 +34,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PersonaScreen()
+                    HomeScreen()
                 }
             }
         }
     }
 }
 
+
+@Composable
+fun NavigationGraph() {
+    val navController: NavHostController = rememberNavController()
+    NavHost(navController = navController, startDestination = Rutas.Home.ruta  ){
+        composable(Rutas.Home.ruta){
+
+        }
+    }
+}

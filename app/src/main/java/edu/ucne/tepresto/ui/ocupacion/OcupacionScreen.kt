@@ -1,12 +1,17 @@
 package edu.ucne.tepresto.ui.ocupacion
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -30,7 +35,13 @@ private fun OcupacionBody(
     viewModel: OcupacionViewModel
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-
+        IconButton(
+            modifier = Modifier
+                .padding(8.dp),
+            onClick = { viewModel.insertar() }
+        ){
+            Icon(Icons.Outlined.ArrowBack, contentDescription = "Back")
+        }
         OutlinedTextField(
             modifier = Modifier
                 .padding(8.dp)
