@@ -34,7 +34,9 @@ fun HomeScreen(navController: NavHostController) {
                     DropdownMenuItem(
                         text = { Text("Registro de Ocupaciones") },
                         onClick = {
-                            navController.navigate(route = Rutas.OcupacionR.ruta )
+                            navController.navigate(route = Rutas.OcupacionR.ruta ){
+                                popUpTo("rutaHome")
+                            }
                         },
                         leadingIcon = {
                             Icon(
@@ -45,7 +47,10 @@ fun HomeScreen(navController: NavHostController) {
                     DropdownMenuItem(
                         text = { Text("Registro de Persona") },
                         onClick = {
-                            navController.navigate(route = Rutas.PersonaR.ruta )
+                            navController.navigate(route = Rutas.PersonaR.ruta ){
+                                popUpTo("rutaHome")
+
+                            }
                         },
                         leadingIcon = {
                             Icon(

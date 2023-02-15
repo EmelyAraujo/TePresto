@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -20,13 +22,24 @@ import androidx.navigation.NavHostController
 fun PersonaScreen(viewModel: PersonaViewModel = hiltViewModel()) {
 
     Column(modifier = Modifier.fillMaxSize()) {
-        IconButton(
-            modifier = Modifier
-                .padding(8.dp),
-            onClick = { }
-        ){
-            Icon(Icons.Outlined.ArrowBack, contentDescription = "Back")
-        }
+        TopAppBar(
+            title = { Text("Registro de personas") },
+            navigationIcon = {
+                IconButton(onClick = { }) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                }
+            },
+
+
+            actions = {
+                // RowScope here, so these icons will be placed horizontally
+                IconButton(onClick = { /* doSomething() */ }) {
+                    Icon(Icons.Filled.Share, contentDescription = "Buscar")
+                }
+
+            }
+        )
+
         OutlinedTextField(
             modifier = Modifier
                 .padding(8.dp)

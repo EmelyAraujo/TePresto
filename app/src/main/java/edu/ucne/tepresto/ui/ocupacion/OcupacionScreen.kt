@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import edu.ucne.tepresto.data.local.entity.OcupacionEntity
 import edu.ucne.tepresto.ui.Navegation.Rutas
@@ -23,7 +24,7 @@ import edu.ucne.tepresto.ui.persona.PersonaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OcupacionScreen(viewModel: OcupacionViewModel = hiltViewModel() ) {
+fun OcupacionScreen(viewModel: OcupacionViewModel = hiltViewModel()) {
 
     Column(Modifier.fillMaxSize()) {
         OcupacionBody(viewModel)
@@ -46,6 +47,7 @@ private fun OcupacionBody(
                     Icon(Icons.Filled.ArrowBack, contentDescription = null)
                 }
             },
+
 
             actions = {
                 // RowScope here, so these icons will be placed horizontally

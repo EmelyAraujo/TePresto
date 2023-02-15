@@ -46,6 +46,7 @@ fun NavigationGraph() {
                 HomeScreen(navController)
         }
         composable(route = Rutas.OcupacionR.ruta){
+
             OcupacionScreen()
         }
 
