@@ -3,6 +3,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Add
@@ -13,11 +14,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import edu.ucne.tepresto.data.local.entity.OcupacionEntity
 import edu.ucne.tepresto.ui.Navegation.Rutas
 import edu.ucne.tepresto.ui.persona.PersonaViewModel
@@ -28,22 +31,21 @@ fun OcupacionScreen(viewModel: OcupacionViewModel = hiltViewModel()) {
 
     Column(Modifier.fillMaxSize()) {
         OcupacionBody(viewModel)
-
-        val uiState by viewModel.uiState.collectAsState()
-        OcupacionListScreen(uiState.ocupacionesList)
     }
 }
-
+//Buscar como poner requerimientos en jetpack compose
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun OcupacionBody(
     viewModel: OcupacionViewModel
-) {
+)
+{
+    val navController: NavHostController = rememberNavController()
     Column(modifier = Modifier.fillMaxWidth()) {
         TopAppBar(
             title = { Text("Registro de ocupaciones") },
             navigationIcon = {
-                IconButton(onClick = { }) {
+                IconButton(onClick = {navController.navigate("Home")  }) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = null)
                 }
             },
@@ -51,12 +53,13 @@ private fun OcupacionBody(
 
             actions = {
                 // RowScope here, so these icons will be placed horizontally
-                IconButton(onClick = { /* doSomething() */ }) {
-                    Icon(Icons.Filled.Share, contentDescription = "Buscar")
+                IconButton(onClick = {}) {
+                    Icon(Icons.Filled.Search, contentDescription = "Buscar")
                 }
 
             }
         )
+
 
         OutlinedTextField(
             modifier = Modifier
@@ -87,36 +90,3 @@ private fun OcupacionBody(
     }
 }
 
-@Composable
-private fun OcupacionListScreen(ocupacionList: List<OcupacionEntity>) {
-    LazyColumn {
-        items(ocupacionList) { ocupacion ->
-            OcupacionRow(ocupacion)
-        }
-    }
-}
-@Composable
-private fun OcupacionRow(ocupacion: OcupacionEntity) {
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = ocupacion.descripcion,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.weight(3f)
-            )
-            Text(
-                String.format("%.2f", ocupacion.sueldo),
-                textAlign = TextAlign.End,
-                modifier = Modifier.weight(2f)
-            )
-        }
-        Divider(Modifier.fillMaxWidth())
-    }
-}

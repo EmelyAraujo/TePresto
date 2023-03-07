@@ -9,8 +9,10 @@ import org.jetbrains.annotations.NotNull
 data class OcupacionEntity(
     @PrimaryKey(autoGenerate = true)
     val ocupacionId: Int?=null,
-    val descripcion: String,
-    val sueldo: Double
+    val descripcion: String = "",
+    val descripcionError: String? = null,
+    val sueldo: Double = 0.0,
+    val sueldoError: Double? = null
 
 
 )

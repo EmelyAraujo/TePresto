@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.*
@@ -15,11 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import edu.ucne.tepresto.data.local.entity.OcupacionEntity
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PersonaScreen(viewModel: PersonaViewModel = hiltViewModel()) {
+
+    var expanded by remember { mutableStateOf(false) }
+
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
@@ -34,7 +39,7 @@ fun PersonaScreen(viewModel: PersonaViewModel = hiltViewModel()) {
             actions = {
                 // RowScope here, so these icons will be placed horizontally
                 IconButton(onClick = { /* doSomething() */ }) {
-                    Icon(Icons.Filled.Share, contentDescription = "Buscar")
+                    Icon(Icons.Filled.Search, contentDescription = "Buscar")
                 }
 
             }

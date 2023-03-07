@@ -1,6 +1,7 @@
 package edu.ucne.tepresto.ui.ocupacion
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -27,9 +28,10 @@ class OcupacionViewModel @Inject constructor(
 
     var descripcion by mutableStateOf("")
     var sueldo by mutableStateOf("")
-
     var uiState = MutableStateFlow(OcupacionUiState())
         private set
+    var state by mutableStateOf(OcupacionEntity())
+
 
     init {
         getLista()
@@ -50,7 +52,7 @@ class OcupacionViewModel @Inject constructor(
             descripcion = descripcion,
             sueldo = sueldo.toDoubleOrNull() ?: 0.0
         )
-
+0
         viewModelScope.launch(Dispatchers.IO) {
             ocupacionRepository.insert(ocupacion)
             Limpiar()
@@ -61,5 +63,7 @@ class OcupacionViewModel @Inject constructor(
         descripcion = ""
         sueldo = ""
     }
+
+
 
 }
